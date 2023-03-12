@@ -1,12 +1,23 @@
-import java.util.Scanner;
-public class Main{
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        int H = sc.nextInt();
-        int M = sc.nextInt();
-        if(M>=45) {System.out.println(H+" "+(M-45));}
-        else {
-            if(H==0) System.out.println(23+" "+(15+M));
-            else System.out.println((H-1)+" "+(15+M));}
-    }
+import java.io.*;
+import java.util.*;
+
+
+class Main {
+public static void main(String[] args) throws IOException {
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	StringTokenizer st = new StringTokenizer(br.readLine());
+	int h = Integer.parseInt(st.nextToken());
+	int m = Integer.parseInt(st.nextToken());
+	
+	if(m>44) {
+		System.out.println(h +" "+(m-45));
+	} else {
+		if(h==0) {
+			System.out.println(23+" "+(m+15));
+		} else {
+			System.out.println((h-1)+" "+(m+15));
+		}
+	}
+	
+	}
 }
