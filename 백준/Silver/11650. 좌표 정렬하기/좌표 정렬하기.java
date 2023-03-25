@@ -10,16 +10,7 @@ class Main {
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			list.add(new Point(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())));
 		}
-		Collections.sort(list, new Comparator<Point>() {
-			public int compare(Point p1, Point p2) {
-				if(p1.x>p2.x) return 1;
-				else if(p2.x>p1.x) return -1;
-				else {
-					if(p1.y>p2.y) return 1;
-					else return -1;
-				}
-			}
-		});
+		Collections.sort(list, (p1, p2)->p1.x!=p2.x?p1.x-p2.x:p1.y-p2.y); 
 		for(Point a:list) {
 			System.out.println(a);
 		}
