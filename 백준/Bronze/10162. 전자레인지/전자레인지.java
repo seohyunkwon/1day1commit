@@ -10,10 +10,6 @@ class Main{
 		int[] arr = {300,60,10};
 		if(n%10!=0) { System.out.println(-1); return; }
 		for(int i=0; i<arr.length; i++) {
-			if(n/arr[i]==0) {
-				sb.append(0).append(" ");
-				continue;
-			}
 			int cnt = n/arr[i];
 			n = n-cnt*arr[i];
 			sb.append(cnt).append(" ");
