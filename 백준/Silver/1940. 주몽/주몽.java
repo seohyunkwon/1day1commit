@@ -15,10 +15,11 @@ class Main{
 		int start = 0;
 		int end = n-1;
 		int cnt = 0;
-		while(end>=0 && start<n && start<end) {
+		while(start<end) {
 			int k = arr[start]+arr[end];
 			if(k == m) {
 				cnt++;
+				start++;
 				end--;
 			} else if(k<m) {
 				start++;
