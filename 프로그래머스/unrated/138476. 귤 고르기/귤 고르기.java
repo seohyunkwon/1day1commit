@@ -1,15 +1,15 @@
 import java.util.*;
 class Solution {
     public int solution(int k, int[] tangerine) {
-        int[] arr = new int[10000000];
-        for(int i:tangerine){
-            arr[i-1] +=1;
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i : tangerine){
+            map.put(i, map.getOrDefault(i,0)+1);
         }
-        Arrays.sort(arr);
-        int j = arr.length-1;
+        int[] arr =  map.values().stream().sorted(Collections.reverseOrder()).mapToInt(Integer::intValue).toArray();
         int answer = 0;
-        while(k>0){
-            k-=arr[j--]; answer++;
+        for(int i : arr) {
+            k-=i; answer++;
+            if(k<=0) break;
         }
         return answer;
     }
