@@ -1,0 +1,1 @@
+select user_id, product_id from (SELECT count(*) count, user_id, product_id from online_sale group by user_id, product_id) a where a.count>=2 order by user_id, product_id desc
