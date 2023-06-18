@@ -1,0 +1,1 @@
+select member_name, review_text, to_char(review_Date, 'yyyy-mm-dd') review_Date from (select * from(select member_id from rest_Review group by member_id order by count(*) desc) where rownum=1) a, member_profile p, rest_review r where a.member_id=p.member_id and r.member_id = a.member_id order by review_date, review_Text
