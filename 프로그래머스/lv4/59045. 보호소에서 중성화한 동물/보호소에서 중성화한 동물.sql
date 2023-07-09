@@ -1,0 +1,2 @@
+SELECT i.animal_id, i.animal_type, i.name FROM ANIMAL_INS I LEFT OUTER JOIN ANIMAL_OUTS O ON I.ANIMAL_ID=O.ANIMAL_ID
+WHERE I.SEX_UPON_INTAKE LIKE 'Intact%' AND (O.SEX_UPON_OUTCOME LIKE 'Spayed%' OR O.SEX_UPON_OUTCOME LIKE 'Neutered%') order by i.animal_id
