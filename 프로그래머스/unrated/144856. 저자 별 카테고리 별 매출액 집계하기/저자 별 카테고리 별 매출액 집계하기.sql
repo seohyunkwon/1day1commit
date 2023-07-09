@@ -1,0 +1,2 @@
+select b.author_id, author_name, category, sum(total) total_Sales from (select b.author_id, category, sales * price total from (SELECT book_id,sum(sales) sales from book_sales where to_char(sales_Date,'YYYY-MM')='2022-01' group by book_id) a, book b where a.book_id=b.book_id) b, author a where b.author_id=a.author_id
+group by category, b.author_id, author_name order by author_id, category desc
