@@ -1,0 +1,1 @@
+solution = lambda array : sorted(array)[int(len(array)/2)]
