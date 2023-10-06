@@ -1,21 +1,16 @@
-import java.util.Iterator;
-import java.util.Stack;
-
+import java.util.*;
 class Solution {
     boolean solution(String s) {
-            Stack<Character> stack = new Stack<Character>();
+        Stack<Character> stack = new Stack<>();
         for(int i=0; i<s.length(); i++){
-            if(s.charAt(i)=='(') stack.push('(');
-            else {
-                if(!stack.isEmpty()){
-                    stack.pop();
-                } else return false;
+            char c = s.charAt(i);
+            if(c=='('){
+                stack.push('(');
+            } else {
+                if(stack.isEmpty()) return false;
+                stack.pop();
             }
         }
-        
-        if(stack.size()==0) return true;
-        else return false;
-         
- 
+        return stack.isEmpty()?true:false;
     }
 }
