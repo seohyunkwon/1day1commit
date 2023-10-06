@@ -1,15 +1,15 @@
-
 class Solution {
-	public String solution(String s) {
-		char[] arr =s.toLowerCase().toCharArray();
-		if(96<arr[0] && arr[0]<123) arr[0]-=32;
-		for(int i=1; i<arr.length; i++) {
-			if(arr[i-1]==' ' && 96<arr[i] && arr[i]<123) {
-				arr[i]-=32;
-			}
-		}
-		
-		return String.copyValueOf(arr);
-		
-	}
+    public String solution(String s) {
+        String[] arr = s.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<arr.length; i++){
+            String str = arr[i];
+            if(str.equals("")) {
+                sb.append(" ");
+                continue;
+            }
+            sb.append(str.substring(0,1).toUpperCase()+str.toLowerCase().substring(1)+((i==arr.length-1)?"":" "));
+        }
+        return sb.toString()+(s.charAt(s.length()-1)==' '?" ":"");
+    }
 }
