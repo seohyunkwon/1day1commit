@@ -1,20 +1,21 @@
-import java.util.HashSet;
+import java.util.*;
 class Solution {
     public int[] solution(int n, String[] words) {
-        HashSet<String> set = new HashSet<>();
-        int times = 1;
-        int cnt = 0;
-        set.add(words[0]);
-        for(int i=1; i<words.length; i++){
-            if(i%n==0) times++;
-            if(set.contains(words[i]) || words[i].charAt(0)!=words[i-1].charAt(words[i-1].length()-1)){
-                cnt = i%n+1;
-                break;
+        int cnt = 1;
+        Stack<String> stack = new Stack<>();
+        for(int i=0; i<words.length; i++){
+            String str = words[i];
+            if(stack.contains(str)){
+                return new int[]{(i+1)%n==0?n:(i+1)%n, (i+1)/n+((i+1)%n!=0?1:0)};
+            } else {
+                if(!stack.isEmpty()){
+                    String tmp = stack.peek();
+                    if(tmp.charAt(tmp.length()-1)!=str.charAt(0)) 
+                    return new int[]{(i+1)%n==0?n:(i+1)%n, (i+1)/n+((i+1)%n!=0?1:0)};
+                }
+                stack.push(str);
             }
-            set.add(words[i]);
-            
         }
-    
-        return new int[]{cnt==0?0:cnt, cnt==0?0:times};
+        return new int[]{0,0};
     }
 }
