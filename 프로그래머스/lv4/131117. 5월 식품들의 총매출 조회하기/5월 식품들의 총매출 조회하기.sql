@@ -1,2 +1,14 @@
-select a.product_id, product_name, total*price total_sales from (SELECT product_id, SUM(amount) total from FOOD_ORDER where to_Char(PRODUCE_DATE, 'YYYY-MM')='2022-05' group by product_id) a, food_product b where a.product_id=b.product_id
-order by total_sales desc, product_id
+SELECT A.PRODUCT_ID, PRODUCT_NAME, AMOUNT*PRICE TOTAL_SALES FROM (
+    SELECT 
+        PRODUCT_ID, SUM(AMOUNT) AMOUNT 
+    FROM 
+        FOOD_ORDER 
+    WHERE 
+        PRODUCE_DATE 
+        BETWEEN TO_DATE('2022-05-01', 'YYYY-MM-DD') 
+        AND TO_DATE('2022-05-31', 'YYYY-MM-DD') 
+    GROUP BY PRODUCT_ID
+    ) A, FOOD_PRODUCT P 
+WHERE 
+    A.PRODUCT_ID=P.PRODUCT_ID
+ORDER BY TOTAL_SALES DESC, PRODUCT_ID
