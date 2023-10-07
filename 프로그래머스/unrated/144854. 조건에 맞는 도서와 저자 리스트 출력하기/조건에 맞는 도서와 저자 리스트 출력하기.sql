@@ -1,2 +1,1 @@
--- 코드를 입력하세요
-SELECT book_id, author_name, to_Char(published_date, 'yyyy-mm-dd') published_Date from book b, author a where b.author_id = a.author_id and b.category='경제' order by published_Date
+SELECT BOOK_ID, AUTHOR_NAME, TO_CHAR(PUBLISHED_DATE, 'YYYY-MM-DD') PUBLISHED_DATE FROM BOOK B, AUTHOR A WHERE A.AUTHOR_ID=B.AUTHOR_ID AND CATEGORY = '경제'ORDER BY PUBLISHED_DATE
