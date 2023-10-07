@@ -1,4 +1,1 @@
-select to_char(sales_date, 'yyyy-MM-dd') sales_Date,product_id,  user_id, sales_amount from 
-(select user_id , product_id, sales_Amount, sales_Date from online_Sale
-union all
-select null as user_id , product_id, sales_Amount, sales_Date from offline_sale) where to_char(sales_Date, 'yyyy-MM') = '2022-03' order by sales_date, product_id, user_id
+SELECT TO_CHAR(SALES_DATE, 'YYYY-MM-DD') SALES_DATE, PRODUCT_ID, USER_ID, SALES_AMOUNT FROM (SELECT SALES_DATE, PRODUCT_ID, USER_ID, SALES_AMOUNT FROM ONLINE_SALE N UNION SELECT SALES_DATE, PRODUCT_ID, NULL AS USER_ID, SALES_AMOUNT FROM OFFLINE_SALE F) WHERE SALES_DATE BETWEEN TO_DATE('2022-03-01', 'YYYY-MM-DD') AND TO_DATE('2022-03-31', 'YYYY-MM-DD') ORDER BY SALES_DATE, PRODUCT_ID, USER_ID
