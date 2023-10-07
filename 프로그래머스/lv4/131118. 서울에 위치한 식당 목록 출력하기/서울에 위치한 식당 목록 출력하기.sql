@@ -1,3 +1,10 @@
-select r.rest_id, rest_name, food_type, favorites, address,  score
-from rest_info r, 
-(select rest_id, round(sum(review_score)/count(*),2) score from rest_review group by rest_id ) a where r.rest_id=a.rest_id and address like '서울%' order by score desc, favorites desc
+SELECT A.REST_ID, REST_NAME, FOOD_TYPE, FAVORITES, ADDRESS, SCORE FROM(
+SELECT 
+    REST_ID,ROUND(SUM(REVIEW_SCORE)/COUNT(REVIEW_SCORE),2) SCORE 
+FROM 
+    REST_REVIEW 
+WHERE
+    REST_ID IN (SELECT REST_ID FROM REST_INFO WHERE ADDRESS LIKE '서울%')
+GROUP BY REST_ID) A, REST_INFO I WHERE A.REST_ID=I.REST_ID
+ORDER BY SCORE DESC, FAVORITES DESC
+
