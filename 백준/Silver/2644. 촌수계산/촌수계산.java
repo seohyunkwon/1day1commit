@@ -18,10 +18,13 @@ public class Main {
                 .toArray();
         graph = new ArrayList<>();
         visited = new boolean[N];
+        // 노드 생성
         for (int i = 0; i < N; i++) {
             graph.add(new ArrayList<>());
         }
         int M = Integer.parseInt(br.readLine());
+        
+        // 그래프 연결
         for (int i = 0; i < M; i++) {
             int[] tmp = Arrays.stream(br.readLine().split(" "))
                     .mapToInt(Integer::parseInt)
@@ -30,8 +33,7 @@ public class Main {
             graph.get(tmp[1] - 1).add(tmp[0] - 1);
         }
 
-        int result = dfs(arr[1]-1, 0, arr[0]-1);
-        System.out.println(result);
+        System.out.println(dfs(arr[1]-1, 0, arr[0]-1));
     }
 
     private static int dfs(int idx, int depth, int target) {
