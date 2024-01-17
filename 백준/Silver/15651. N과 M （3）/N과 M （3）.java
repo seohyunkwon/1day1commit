@@ -1,38 +1,40 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.StringTokenizer;
 
 public class Main {
-    static int[] dx = {0,0,1,-1};
-    static int[] dy = {1,-1,0,0};
-    static int n;
-    static int m;
-    static StringBuilder sb;
     static int[] selected;
+    static boolean[] visited;
+    static int N, M;
+    static StringBuilder sb;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        n = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
-        sb = new StringBuilder();
-        selected = new int[n];
-        backtracking(0, 0);
-        System.out.println(sb);
 
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        visited = new boolean[N+1];
+        selected = new int[M];
+        sb = new StringBuilder();
+
+        backtracking(0);
+
+        System.out.println(sb.toString());
     }
 
-    public static void backtracking(int depth, int j){
-        if(depth>=m) {
-            for(int i=0; i<depth; i++){
-                sb.append(selected[i]+" ");
+    private static void backtracking(int depth) {
+        if(depth == M) {
+            for(int i:selected) {
+                sb.append(i+" ");
             }
             sb.append("\n");
             return;
         }
-        for(int i=1; i<=n; i++){
+        for(int i=1; i<=N; i++) {
+            if(visited[i]) continue;
             selected[depth] = i;
-            backtracking(depth+1, i);
+            backtracking(depth+1);
         }
     }
 }
