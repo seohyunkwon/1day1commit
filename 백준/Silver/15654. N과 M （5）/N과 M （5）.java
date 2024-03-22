@@ -4,39 +4,50 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
-    static StringBuffer sb = new StringBuffer();
-    static int l,c;
-    static int[] selected;
-    static boolean[] visited;
-    static int[] arr;
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        l = Integer.parseInt(st.nextToken());
-        c = Integer.parseInt(st.nextToken());
-        arr = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).sorted().toArray();
-        selected = new int[c];
-        visited = new boolean[l+1];
-        backtracking(0);
-        System.out.println(sb);
-
-    }
-    public static void backtracking(int depth){
-        if(depth==c) {
-            for(int i:selected){
-                sb.append(i+" ");
-            }
-            sb.append("\n");
-            return;
-        }
-        for(int i=0; i< arr.length; i++) {
-            if (!visited[i]) {
-                selected[depth] = arr[i];
-                visited[i] = true;
-                backtracking(depth + 1);
-                visited[i] = false;
-            }
-        }
-    }
+class Main {
+	static int N, M;
+	static StringBuilder sb = new StringBuilder();
+	static int[] select;
+	static boolean[] visit;
+	static int[] numbers;
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		numbers = new int[N];
+		select = new int[M];
+		visit = new boolean[N];
+		
+		st = new StringTokenizer(br.readLine());
+		for(int i = 0; i < N; i++) {
+			numbers[i] = Integer.parseInt(st.nextToken());
+		}
+		
+		Arrays.sort(numbers);
+		
+		getResult(0);
+		
+		System.out.println(sb.toString());
+		
+	}
+	
+	static void getResult(int idx) {
+		if(idx == M) {
+			for(int i : select) {
+				sb.append(i + " ");
+			}
+			sb.append("\n");
+			return;
+		}
+		
+		for(int i = 0; i < N; i++) {
+			if(visit[i]) continue;
+			visit[i] = true;
+			select[idx] = numbers[i];
+			getResult(idx + 1);
+			visit[i] = false;
+		}
+		
+	}
 }
