@@ -21,17 +21,18 @@ public class Main {
             graph[A].add(B);
             in[B]++;
         }
-
-        List<Integer> result = new ArrayList<>();
+        
         Queue<Integer> queue = new LinkedList<>();
 
         for(int i = 1; i <= N; i++) {
             if(in[i] == 0) queue.offer(i);
         }
-
+        
+        StringBuilder sb = new StringBuilder();
+        
         while (!queue.isEmpty()) {
             int tmp = queue.poll();
-            result.add(tmp);
+            sb.append(tmp+" ");
             for(int i = 0; i < graph[tmp].size(); i++) {
                 in[graph[tmp].get(i)]--;
                 if(in[graph[tmp].get(i)] == 0) {
@@ -39,6 +40,6 @@ public class Main {
                 }
             }
         }
-        for(int i : result) System.out.print(i + " ");
+        System.out.println(sb.toString());
     }
 }
