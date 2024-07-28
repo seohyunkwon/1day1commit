@@ -1,11 +1,11 @@
 class Solution {
     public long solution(int n) {
-        long[] dp = new long[2000];
-        dp[0] = 1;
-        dp[1] = 2;
-        for(int i=2; i<dp.length; i++){
-            dp[i] = (dp[i-1]+dp[i-2])%1234567;
+        long answer[] = new long[n + 1];
+        if(n <= 2) return n;
+        for(int i = 1; i < n + 1; i++) {
+            if(i <= 2) answer[i] = i;
+            else answer[i] = (answer[i - 1] + answer[i - 2]) % 1234567;
         }
-        return dp[n-1]%1234567;
+        return answer[n];
     }
 }
